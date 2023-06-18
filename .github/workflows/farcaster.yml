@@ -2,7 +2,7 @@ name: Publish to Farcaster
 
 on:
   schedule:
-    - cron: "* */1 * * *"
+    - cron: "* */6 * * *"
 jobs:
   build:
     name: farcaster
