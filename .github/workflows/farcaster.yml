@@ -2,8 +2,7 @@ name: Publish to Farcaster
 
 on:
   schedule:
-  Runs "at every 6 hours" (see https://crontab.guru)
-  - cron: "* */6 * * *"
+    - cron: "* */6 * * *"
 jobs:
   build:
     name: farcaster
