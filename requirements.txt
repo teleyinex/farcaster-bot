@@ -1,0 +1,4 @@
+python-dotenv
+farcaster
+gspread
+oauth2client

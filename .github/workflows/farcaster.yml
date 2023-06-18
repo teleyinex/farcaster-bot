@@ -1,0 +1,31 @@
+name: Publish to Farcaster
+
+on:
+  schedule:
+  Runs "at every 6 hours" (see https://crontab.guru)
+  - cron: "* */6 * * *"
+jobs:
+  build:
+    name: farcaster
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: install python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: cast message
+        env:
+          GOOGLE_AUTH: ${{secrets.GOOGLE_AUTH}}
+          FARCASTER_MNEMONIC: ${{secrets.FARCASTER_MNEMONIC}}
+          URL: ${{secrets.URL}}
+        run: |
+          python app.py
