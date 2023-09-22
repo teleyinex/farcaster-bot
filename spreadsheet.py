@@ -53,13 +53,13 @@ class SpreadsheetClient:
             cast_msg = p.cell(row, 1).value
 
         cast_media = p.cell(row, 3).value
-        local_filename = None
-        if not check_empty(cast_media):
-            local_filename = download_file(cast_media)
+        # local_filename = None
+        # if not check_empty(cast_media):
+        #     local_filename = download_file(cast_media)
 
         p.update_cell(tmp.row, 2, "")
         p.update_cell(row, 2, "last")
 
         # Rotate sheets
         self.dashboard.update_acell("A1", p.title)
-        return (cast_msg, local_filename)
+        return (cast_msg, str(cast_media))

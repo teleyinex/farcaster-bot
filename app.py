@@ -31,8 +31,11 @@ FARCASTER_MNEMONIC = os.environ["FARCASTER_MNEMONIC"]
 
 s_client = SpreadsheetClient(GOOGLE_AUTH, URL)
 
-cast_msg, local_filename = s_client.get_cast()
+cast_msg, cast_media = s_client.get_cast()
 
 client = Warpcast(mnemonic=FARCASTER_MNEMONIC)
 
-client.post_cast(text=cast_msg)
+if cast_media is not None and cast_media != "":
+    client.post_cast(text=cast_msg, embeds=[cast_media])
+else:
+    client.post_cast(text=cast_msg)
